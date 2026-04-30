@@ -6,6 +6,15 @@ import { createTransaction, getItems } from "../lib/api";
 export default function Home() {
   const [items, setItems] = useState([]);
 
+  const productImages = [
+    "https://picsum.photos/id/1/400/400",
+    "https://picsum.photos/id/20/400/400",
+    "https://picsum.photos/id/30/400/400",
+    "https://picsum.photos/id/40/400/400",
+    "https://picsum.photos/id/50/400/400",
+    "https://picsum.photos/id/60/400/400",
+  ];
+
   useEffect(() => {
     getItems().then((res) => {
       setItems(res.payload || []);
@@ -49,9 +58,15 @@ export default function Home() {
           <div className="card-product" key={item.id}>
 
             <img
-              src={`https://picsum.photos/400/400?random=${index + 1}`}
+              src={productImages[index % productImages.length]}
               alt={item.name}
-              className="product-img"
+              style={{
+                width:"100%",
+                height:"240px",
+                objectFit:"cover",
+                borderRadius:"12px",
+                display:"block"
+              }}
             />
 
             <h3>{item.name}</h3>
