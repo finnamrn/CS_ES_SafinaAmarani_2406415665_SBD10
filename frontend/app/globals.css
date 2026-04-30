@@ -1,0 +1,172 @@
+body{
+  background:#000;
+  color:white;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+/* AUTH */
+
+.auth-wrap{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.spotify-card{
+  width:100%;
+  max-width:420px;
+  background:#121212;
+  padding:42px;
+  border-radius:14px;
+}
+
+.spotify-card h1{
+  font-size:34px;
+  margin-bottom:25px;
+}
+
+.spotify-card input{
+  width:100%;
+  padding:14px;
+  margin-bottom:14px;
+  background:#000;
+  border:1px solid #333;
+  color:white;
+  border-radius:999px;
+}
+
+.spotify-card button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:999px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* HOME */
+
+.home-wrap{
+  padding:40px;
+}
+
+.hero-min{
+  margin-bottom:30px;
+}
+
+.grid-products{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.card-product{
+  background:#111;
+  padding:18px;
+  border-radius:14px;
+}
+
+.card-product img{
+  width:100%;
+  height:240px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.card-product h3{
+  margin:14px 0 8px;
+}
+
+.card-product button{
+  width:100%;
+  padding:12px;
+  margin-top:12px;
+}
+
+/* TRANSACTIONS */
+
+.trx-wrap{
+  max-width:800px;
+  margin:auto;
+  padding:50px 20px;
+}
+
+.trx-wrap h1{
+  font-size:42px;
+  margin-bottom:24px;
+}
+
+.trx-box{
+  background:#111;
+  padding:20px;
+  border-radius:14px;
+  margin-bottom:16px;
+}
+
+.navbar{
+  height:72px;
+  padding:0 38px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#000;
+  border-bottom:1px solid #181818;
+  position:sticky;
+  top:0;
+  z-index:999;
+}
+
+.nav-logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:white;
+  font-size:18px;
+  font-weight:700;
+  letter-spacing:2px;
+}
+
+.nav-logo img{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.nav-menu{
+  display:flex;
+  align-items:center;
+  gap:26px;
+}
+
+.nav-menu a{
+  color:#b3b3b3;
+  text-decoration:none;
+  font-size:14px;
+  transition:.2s;
+}
+
+.nav-menu a:hover{
+  color:white;
+}
+
+@media(max-width:768px){
+
+.navbar{
+  padding:0 18px;
+}
+
+.nav-logo span{
+  font-size:14px;
+}
+
+.nav-menu{
+  gap:14px;
+}
+
+.nav-menu a{
+  font-size:12px;
+}
+}
