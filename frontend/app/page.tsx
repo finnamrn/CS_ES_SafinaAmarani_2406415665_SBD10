@@ -4,21 +4,19 @@ import { useEffect, useState } from "react";
 import { createTransaction, getItems } from "../lib/api";
 
 export default function Home() {
+  const [items, setItems] = useState([]);
 
-  const [items,setItems] = useState([]);
-
-  useEffect(()=>{
-    getItems().then(res=>{
+  useEffect(() => {
+    getItems().then((res) => {
       setItems(res.payload || []);
     });
-  },[]);
+  }, []);
 
-  async function handleBuy(itemId:number){
-
+  async function handleBuy(itemId:number) {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
 
-    if(!token || !userId){
+    if (!token || !userId) {
       alert("Login dulu");
       return;
     }
@@ -30,9 +28,9 @@ export default function Home() {
       token
     );
 
-    if(res.success){
+    if (res.success) {
       alert("Berhasil beli");
-    }else{
+    } else {
       alert(res.message);
     }
   }
@@ -47,20 +45,20 @@ export default function Home() {
 
       <section className="grid-products">
 
-        {items.map((item:any,index)=>(
+        {items.map((item:any, index:number) => (
           <div className="card-product" key={item.id}>
 
             <img
-              src={`https://picsum.photos/400/400?random=${index+1}`}
+              src={`https://picsum.photos/400/400?random=${index + 1}`}
+              alt={item.name}
+              className="product-img"
             />
 
             <h3>{item.name}</h3>
 
             <p>Rp {item.price}</p>
 
-            <button
-              onClick={()=>handleBuy(item.id)}
-            >
+            <button onClick={() => handleBuy(item.id)}>
               Buy
             </button>
 
