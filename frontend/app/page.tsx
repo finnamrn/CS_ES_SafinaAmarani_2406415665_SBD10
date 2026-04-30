@@ -1,87 +1,49 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { createTransaction, getItems } from "../lib/api";
+export default function Home(){
 
-export default function Home() {
-  const [items, setItems] = useState([]);
+const items = [
+ {id:1,name:"Laptop",price:1000000,img:"https://picsum.photos/id/1/400/400"},
+ {id:2,name:"Mouse",price:50000,img:"https://picsum.photos/id/20/400/400"},
+ {id:3,name:"Keyboard",price:150000,img:"https://picsum.photos/id/30/400/400"},
+ {id:4,name:"Monitor",price:800000,img:"https://picsum.photos/id/40/400/400"},
+ {id:5,name:"Headset",price:300000,img:"https://picsum.photos/id/50/400/400"},
+ {id:6,name:"Webcam",price:250000,img:"https://picsum.photos/id/60/400/400"},
+];
 
-  const productImages = [
-    "https://picsum.photos/id/1/400/400",
-    "https://picsum.photos/id/20/400/400",
-    "https://picsum.photos/id/30/400/400",
-    "https://picsum.photos/id/40/400/400",
-    "https://picsum.photos/id/50/400/400",
-    "https://picsum.photos/id/60/400/400",
-  ];
+return(
+<main className="home-wrap">
 
-  useEffect(() => {
-    getItems().then((res) => {
-      setItems(res.payload || []);
-    });
-  }, []);
+<section className="hero-min">
+<h1>NEXUS STORE</h1>
+<p>Modern devices & essential gear.</p>
+</section>
 
-  async function handleBuy(itemId:number) {
-    const token = localStorage.getItem("token");
-    const userId = localStorage.getItem("userId");
+<section className="grid-products">
 
-    if (!token || !userId) {
-      alert("Login dulu");
-      return;
-    }
+{items.map((item)=>(
+<div className="card-product" key={item.id}>
 
-    const res = await createTransaction(
-      Number(userId),
-      itemId,
-      1,
-      token
-    );
+<img
+src={item.img}
+style={{
+width:"100%",
+height:"240px",
+objectFit:"cover",
+borderRadius:"12px"
+}}
+/>
 
-    if (res.success) {
-      alert("Berhasil beli");
-    } else {
-      alert(res.message);
-    }
-  }
+<h3>{item.name}</h3>
+<p>Rp {item.price}</p>
 
-  return (
-    <main className="home-wrap">
+<button>Buy</button>
 
-      <section className="hero-min">
-        <h1>NEXUS STORE</h1>
-        <p>Modern devices & essential gear.</p>
-      </section>
+</div>
+))}
 
-      <section className="grid-products">
+</section>
 
-        {items.map((item:any, index:number) => (
-          <div className="card-product" key={item.id}>
-
-            <img
-              src={productImages[index % productImages.length]}
-              alt={item.name}
-              style={{
-                width:"100%",
-                height:"240px",
-                objectFit:"cover",
-                borderRadius:"12px",
-                display:"block"
-              }}
-            />
-
-            <h3>{item.name}</h3>
-
-            <p>Rp {item.price}</p>
-
-            <button onClick={() => handleBuy(item.id)}>
-              Buy
-            </button>
-
-          </div>
-        ))}
-
-      </section>
-
-    </main>
-  );
+</main>
+)
 }
